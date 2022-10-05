@@ -51,6 +51,13 @@ return [
     */
 
     'channels' => [
+        'tickerd' => [ // ticker daemon channel
+            'driver' => 'daily',
+            'path' => storage_path('logs/tickerd.log'),
+            'level' => 'debug',
+            'days' => 3,
+        ],
+
         'stack' => [
             'driver' => 'stack',
             'channels' => ['single'],

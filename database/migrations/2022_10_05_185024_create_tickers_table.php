@@ -21,6 +21,7 @@ return new class extends Migration
             $table->dateTime('time');
 
             $table->timestamps();
+            $table->unique(['symbol', 'time']);
         });
     }
 

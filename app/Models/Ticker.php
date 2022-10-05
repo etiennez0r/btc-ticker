@@ -14,4 +14,14 @@ class Ticker extends Model
         'price',
         'time',
     ];
+
+    public static function updateOrSave($attr, $values)
+    {
+        $ticker = self::firstOrNew($attr);
+        
+        foreach ($values as $k => $value)
+            $ticker->$k = $value;
+
+        $ticker->save();
+    }
 }

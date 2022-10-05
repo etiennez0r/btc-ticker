@@ -17,3 +17,10 @@ use Illuminate\Support\Facades\Artisan;
 Artisan::command('inspire', function () {
     $this->comment(Inspiring::quote());
 })->purpose('Display an inspiring quote');
+
+Artisan::command('daemon:ticker {symbol=BTC/USDT : The desired symbol to fetch prices, BTC/USDT if nothing is specified.}', function ($symbol) {
+    $this->info("fetching ticker price for {$symbol}@binance!");
+
+    $daemon = new \App\Daemons\DaemonTicker($symbol);
+    $daemon->loop();
+})->purpose('Fetch ticker price for any symbol at binance.');
