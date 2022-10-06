@@ -5,35 +5,44 @@ import React, { useEffect, useState } from 'react'
 const SYMBOL = 'BTC/USDT'
 const API_ENDPOINT = `/api/v1/ticker?symbol=${SYMBOL}`
 
+let oldTicker = {price: 0}
+
 const Ticker = () => {
-    const [ticker, setTicker] = useState({price: 0})
+    const [ticker, setTicker] = useState(oldTicker)
     const [variation, setVariation] = useState(0)
     const [gains, setGains] = useState(0)
 
+    // query function
     const fetchTicker = () => {
         axios.get(API_ENDPOINT)
             .then((result) => {
-                const oldTicker = ticker
-                let variation = result.data.ticker.price - oldTicker.price
-
-                variation = Math.round(variation * 100) / 100
-
-                setTicker(result.data.ticker);
-                document.title = `${SYMBOL}: ${result.data.ticker.price}`;
-                
-                setVariation(variation)
-
-                if (oldTicker.price) {
-                    let gains = variation / oldTicker.price
-
-                    gains = Math.round(gains * 100000) / 100000
-                    setGains(gains)
-                }
+                console.log(oldTicker.price, ' -> ', result.data.ticker.price)
+                oldTicker = ticker
+                setTicker(result.data.ticker)
             })
             .catch((error) => console.log(error))
         console.log('consultando precio..')
     }
 
+    // update after every query
+    useEffect(() => {
+        let variation = ticker.price - oldTicker.price // diferencia de precios
+        let gains = 0
+
+        variation = Math.round(variation * 100) / 100
+        
+        if (oldTicker.price) {
+            gains = variation / oldTicker.price
+            gains = Math.round(gains * 100000) / 100000
+        }
+        
+        setVariation(variation)
+        setGains(gains)
+        document.title = `${SYMBOL}: ${ticker.price}`;
+      
+    }, [ticker])
+    
+    // query timer..
     useEffect(() => {
         fetchTicker()
 
