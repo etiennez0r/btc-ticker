@@ -1,12 +1,12 @@
 import HomeLayout from '@/Layouts/HomeLayout'
 import React from 'react'
 
-const Home = () => {
+const Ticker = () => {
   return (
     <HomeLayout>
-      historical..
+        ticker...
     </HomeLayout>
   )
 }
 
-export default Home
+export default Ticker

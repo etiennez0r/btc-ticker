@@ -17,9 +17,9 @@ use App\Http\Controllers\PageController;
 */
 
 Route::get('/', function () {
-    return Inertia::render('Home');
-});
+    return Inertia::render('Ticker');
+})->name('ticker');
 
 Route::get('/historical', function () {
     return Inertia::render('Historical');
-});
+})->name('historical');
