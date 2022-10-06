@@ -22,4 +22,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::get("/$apiVersion/ticker", [TickerController::class, 'ticker']);
-Route::get("/$apiVersion/historic", [TickerController::class, 'historic']);
+Route::get("/$apiVersion/historical", [TickerController::class, 'historical']);

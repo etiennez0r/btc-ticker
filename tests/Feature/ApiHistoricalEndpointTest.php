@@ -6,7 +6,7 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 use App\Models\Ticker;
 
-class ApiHistoricEndpointTest extends TestCase
+class ApiHistoricalEndpointTest extends TestCase
 {
     use RefreshDatabase;
     
@@ -15,23 +15,23 @@ class ApiHistoricEndpointTest extends TestCase
      *
      * @return void
      */
-    public function test_historic_prices_api_endpoint_successful_response()
+    public function test_historical_prices_api_endpoint_successful_response()
     {
-        $response = $this->get('/api/v1/historic?symbol=btcusd');
+        $response = $this->get('/api/v1/historical?symbol=btcusd');
 
         $response->assertStatus(200);
         $response->assertJsonStructure(['msg', 'success']);
     }
 
     /**
-     * test invalid query parameter for historic endpoint
+     * test invalid query parameter for historical endpoint
      * 
      * @return void
      */
 
-    public function test_historic_invalid_query_parameter()
+    public function test_historical_invalid_query_parameter()
     {
-        $response = $this->get('/api/v1/historic?symbol=');
+        $response = $this->get('/api/v1/historical?symbol=');
 
         $response->assertStatus(200);
         $response->assertJsonStructure(['msg', 'success']);
@@ -39,14 +39,14 @@ class ApiHistoricEndpointTest extends TestCase
     }
 
     /**
-     * test valid query parameter for historic endopoint
+     * test valid query parameter for historical endopoint
      * 
      * @return void
      */
 
-    public function test_historic_valid_query_parameter()
+    public function test_historical_valid_query_parameter()
     {
-        $response = $this->get('/api/v1/historic?symbol=SYMBOLONOEXISTE');
+        $response = $this->get('/api/v1/historical?symbol=SYMBOLONOEXISTE');
 
         $response->assertStatus(200);
         $response->assertJsonStructure(['msg', 'success', 'data']);
@@ -79,7 +79,7 @@ class ApiHistoricEndpointTest extends TestCase
                 'price' => 20111,
             ]);
 
-        $response = $this->get('/api/v1/historic?symbol=BTC/USDT');
+        $response = $this->get('/api/v1/historical?symbol=BTC/USDT');
 
         $response->assertJsonStructure(['msg', 'success', 'data']);
         $response->assertJson(['success' => true, 'msg' => '']);

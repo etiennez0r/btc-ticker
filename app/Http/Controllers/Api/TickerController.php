@@ -38,7 +38,7 @@ class TickerController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function historic(Request $request)
+    public function historical(Request $request)
     {
         $response = ['msg' => '', 'success' => false];
         $symbol = $request->get('symbol');

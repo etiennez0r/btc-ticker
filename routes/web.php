@@ -19,3 +19,7 @@ use App\Http\Controllers\PageController;
 Route::get('/', function () {
     return Inertia::render('Home');
 });
+
+Route::get('/historical', function () {
+    return Inertia::render('Historical');
+});
