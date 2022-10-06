@@ -9,24 +9,51 @@ use Illuminate\Http\Request;
 class TickerController extends Controller
 {
     /**
-     * Display the latest trade price of a symbol
+     * Display the latest ticker price
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function ticker(Request $request)
     {
-        return ['price' => 0, 'time' => ''];
+        $response = ['msg' => '', 'success' => false];
+        $symbol = $request->get('symbol');
+
+        if ($symbol) {
+            $ticker = Ticker::where('symbol', '=', $symbol)
+                                ->orderBy('time', 'desc')
+                                ->first();
+
+            $response['success'] = true;
+            $response['data'] = $ticker;
+        } else
+            $response['msg'] = 'Symbol is required';
+
+        return $response;
     }
 
     /**
-     * Display the price history
+     * Display the ticker history
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function historic(Request $request)
     {
-        return [['price' => 0, 'time' => '']];
+        $response = ['msg' => '', 'success' => false];
+        $symbol = $request->get('symbol');
+
+        if ($symbol) {
+            $tickers = Ticker::where('symbol', '=', $symbol)
+                                ->orderBy('id', 'desc')
+                                ->take(100)
+                                ->get();
+
+            $response['success'] = true;
+            $response['data'] = $tickers;
+        } else
+            $response['msg'] = 'Symbol is required';
+
+        return $response;
     }
 }

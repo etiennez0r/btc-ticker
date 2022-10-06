@@ -49,7 +49,7 @@ class DaemonTicker extends Daemon
     protected function saveLastTicker($price, $datetime)
     {
         if ($price && $datetime) {
-            $ret = Ticker::updateOrSave(
+            Ticker::createOrUpdate(
                                 [
                                     'symbol' => $this->symbol,
                                     'time' => $datetime
@@ -58,9 +58,6 @@ class DaemonTicker extends Daemon
                                     'price' => $price
                                 ]
             );
-
-            if ($ret)
-                $c = 0;
         }
     }
 }

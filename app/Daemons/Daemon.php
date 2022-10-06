@@ -25,15 +25,6 @@ abstract class Daemon
         if (\App::runningInConsole() != true)
             exit;
 
-        // if ($force) {
-        //     $daemon = \App\Models\Daemon::where('name', $this->dname)->first();
-
-        //     if ($daemon) {
-        //         $daemon->status = 'starting';
-        //         $daemon->save();
-        //     }
-        // }
-
         if (!$this->register()) {
             exit;
         }
@@ -76,12 +67,6 @@ abstract class Daemon
     {
         $this->timemark = time();
 
-        // $daemon = \App\Models\Daemon::where('name', $this->dname)->first();
-
-        // if ($daemon) {
-        //     $daemon->updated_at = Carbon::now()->toDateTimeString();
-        //     $daemon->save();
-        // }
     }
 
     private function elapsed()
@@ -99,60 +84,17 @@ abstract class Daemon
         $this->log()->notice("***Shutting down daemon with reason: $reason***");
         $this->run = false;
 
-        // $daemon = \App\Models\Daemon::where('name', $this->dname)->first();
-
-        // if ($daemon) {
-        //     $daemon->status = 'stopped';
-        //     $daemon->save();
-        // }
     }
 
     protected function keepRunning()
     {
-        // if ($this->run && !$this->CheckDbSignal()) {
-        //     $this->shutdown("DB Signal");
-        // }
 
         return $this->run;
     }
 
-    // private function CheckDbSignal()
-    // {
-    //     $ret = false;
-
-    //     $daemon = \App\Models\Daemon::where('name', $this->dname)->first();
-
-    //     if ($daemon) {
-    //         if ($daemon->status == 'running')
-    //             $ret = true;
-    //     }
-
-    //     return $ret;
-    // }
-
     private function register()
     {
         $this->run = true;
-        // $daemon = \App\Models\Daemon::where('name', $this->dname)->first();
-
-        // if (!$daemon) {
-        //     $daemon = new \App\Models\Daemon();
-
-        //     $daemon->status = 'starting';
-        //     $daemon->name = $this->dname;
-        // }
-
-        // if ($daemon->status == 'starting') {
-        //     $daemon->status = 'running';
-        //     $daemon->start_date = Carbon::now()->toDateTimeString();
-        //     $daemon->pid = getmypid();
-
-        //     $daemon->save();
-        //     $this->run = true;
-        // } else if ($daemon->status != 'stopped') {
-        //     $class = get_class($this);
-        //     $this->log()->error("couldn't start $class, current status is $daemon->status.");
-        // }
 
         return $this->run;
     }

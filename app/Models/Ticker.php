@@ -15,7 +15,7 @@ class Ticker extends Model
         'time',
     ];
 
-    public static function updateOrSave($attr, $values)
+    public static function createOrUpdate($attr, $values)
     {
         $ticker = self::firstOrNew($attr);
         
