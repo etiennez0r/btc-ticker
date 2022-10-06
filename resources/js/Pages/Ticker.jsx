@@ -1,3 +1,4 @@
+import PriceBoard from '@/Components/PriceBoard'
 import HomeLayout from '@/Layouts/HomeLayout'
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
@@ -11,6 +12,7 @@ const Ticker = () => {
     const [ticker, setTicker] = useState(oldTicker)
     const [variation, setVariation] = useState(0)
     const [gains, setGains] = useState(0)
+    const [className, setClassName] = useState('')
 
     // query function
     const fetchTicker = () => {
@@ -35,6 +37,12 @@ const Ticker = () => {
         
         setVariation(variation)
         setGains(gains)
+        if (gains > 0)
+            setClassName('positive')
+            
+        if (gains < 0)
+            setClassName('negative')
+            
         document.title = `${SYMBOL}: ${ticker.price}`;
 
         oldTicker = ticker
@@ -55,15 +63,11 @@ const Ticker = () => {
   return (
     <HomeLayout>
         <div className="content">
-            <div>
-                {SYMBOL}: {ticker.price * 1}
-            </div>
-            <div>
-                Variation: {variation}
-            </div>
-            <div>
-                Gains: {gains}%
-            </div>
+            <PriceBoard variation={variation} 
+                        gains={gains}
+                        symbol={SYMBOL}
+                        price={ticker.price * 1}
+                        className={className} />
         </div>
     </HomeLayout>
   )

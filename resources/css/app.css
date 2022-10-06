@@ -21,3 +21,15 @@ nav a.active {
 nav a:hover {
     @apply text-gray-100;
 }
+
+.priceboard div {
+    @apply p-2
+}
+
+.positive {
+    @apply text-green-500
+}
+
+.negative {
+    @apply text-red-500
+}
