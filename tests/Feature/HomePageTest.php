@@ -21,4 +21,16 @@ class HomePageTest extends TestCase
 
         $response->assertStatus(200);
     }
+
+    /**
+     * Test inexistent page response
+     *
+     * @return void
+     */
+    public function test_non_existent_page_404_response()
+    {
+        $response = $this->get('/NOEXISTE');
+
+        $response->assertStatus(404);
+    }
 }

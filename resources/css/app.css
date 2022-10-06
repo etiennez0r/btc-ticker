@@ -4,8 +4,6 @@
 
 body {
     margin: 0;
-    display: flex;
-    place-items: center;
     min-width: 320px;
     @apply bg-gray-800;
     @apply text-gray-200;

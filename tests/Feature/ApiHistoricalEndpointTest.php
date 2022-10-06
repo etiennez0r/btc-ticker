@@ -49,8 +49,8 @@ class ApiHistoricalEndpointTest extends TestCase
         $response = $this->get('/api/v1/historical?symbol=SYMBOLONOEXISTE');
 
         $response->assertStatus(200);
-        $response->assertJsonStructure(['msg', 'success', 'data']);
-        $response->assertJson(['success' => true, 'msg' => '', 'data' => []]);
+        $response->assertJsonStructure(['msg', 'success', 'rows']);
+        $response->assertJson(['success' => true, 'msg' => '', 'rows' => []]);
 
 
         Ticker::createOrUpdate(
@@ -81,8 +81,8 @@ class ApiHistoricalEndpointTest extends TestCase
 
         $response = $this->get('/api/v1/historical?symbol=BTC/USDT');
 
-        $response->assertJsonStructure(['msg', 'success', 'data']);
+        $response->assertJsonStructure(['msg', 'success', 'rows']);
         $response->assertJson(['success' => true, 'msg' => '']);
-        $response->assertJsonCount(2, 'data');
+        $response->assertJsonCount(2, 'rows');
     }
 }

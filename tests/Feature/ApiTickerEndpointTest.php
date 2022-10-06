@@ -49,8 +49,8 @@ class ApiTickerEndpointTest extends TestCase
         $response = $this->get('/api/v1/ticker?symbol=SYMBOLONOEXISTE');
 
         $response->assertStatus(200);
-        $response->assertJsonStructure(['msg', 'success', 'data']);
-        $response->assertJson(['success' => true, 'msg' => '', 'data' => []]);
+        $response->assertJsonStructure(['msg', 'success', 'ticker']);
+        $response->assertJson(['success' => true, 'msg' => '', 'ticker' => []]);
 
 
         Ticker::createOrUpdate(
@@ -81,7 +81,6 @@ class ApiTickerEndpointTest extends TestCase
 
         $response = $this->get('/api/v1/ticker?symbol=BTC/USDT');
 
-        $response->assertJsonStructure(['msg', 'success', 'data']);
-        $response->assertJson(['success' => true, 'msg' => '', 'data' => ['price' => 20120]]);
+        $response->assertJson(['success' => true, 'msg' => '', 'ticker' => ['price' => 20120]]);
     }
 }

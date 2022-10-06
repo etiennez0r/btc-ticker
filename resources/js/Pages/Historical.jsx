@@ -4,7 +4,9 @@ import React from 'react'
 const Home = () => {
   return (
     <HomeLayout>
-      historical..
+      <div className="content">
+        HISTORICAL...
+      </div>
     </HomeLayout>
   )
 }

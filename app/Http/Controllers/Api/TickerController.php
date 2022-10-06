@@ -25,7 +25,7 @@ class TickerController extends Controller
                                 ->first();
 
             $response['success'] = true;
-            $response['data'] = $ticker;
+            $response['ticker'] = $ticker;
         } else
             $response['msg'] = 'Symbol is required';
 
@@ -50,7 +50,7 @@ class TickerController extends Controller
                                 ->get();
 
             $response['success'] = true;
-            $response['data'] = $tickers;
+            $response['rows'] = $tickers;
         } else
             $response['msg'] = 'Symbol is required';
 

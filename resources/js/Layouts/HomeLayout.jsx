@@ -5,7 +5,11 @@ const HomeLayout = ({children}) => {
   return (
     <>
         <NavBar />
-        <main>{children}</main>
+
+        <main class="flex items-center justify-center h-screen -mt-20">
+            {children}
+        </main>
+
     </>
   )
 }
