@@ -16,12 +16,9 @@ const Ticker = () => {
     const fetchTicker = () => {
         axios.get(API_ENDPOINT)
             .then((result) => {
-                console.log(oldTicker.price, ' -> ', result.data.ticker.price)
-                oldTicker = ticker
                 setTicker(result.data.ticker)
             })
             .catch((error) => console.log(error))
-        console.log('consultando precio..')
     }
 
     // update after every query
@@ -39,6 +36,8 @@ const Ticker = () => {
         setVariation(variation)
         setGains(gains)
         document.title = `${SYMBOL}: ${ticker.price}`;
+
+        oldTicker = ticker
       
     }, [ticker])
     
@@ -46,12 +45,10 @@ const Ticker = () => {
     useEffect(() => {
         fetchTicker()
 
-        console.log('creando intervalo..')
         const intervalId = setInterval(fetchTicker, 1000 * 10)
     
         return () => {
-            console.log('limpiando el intervalo..')
-            clearInterval(intervalId)
+            clearInterval(intervalId)   // clear interval when unmount
         }
     }, [])
     
