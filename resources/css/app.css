@@ -33,3 +33,11 @@ nav a:hover {
 .negative {
     @apply text-red-500
 }
+
+table td {
+    @apply border border-gray-400 px-2 py-1
+}
+
+.content {
+    @apply w-3/4 mt-20
+}

@@ -6,7 +6,7 @@ const HomeLayout = ({children}) => {
     <>
         <NavBar />
 
-        <main className="flex items-center justify-center h-screen -mt-20">
+        <main className="flex items-center justify-center">
             {children}
         </main>
 
