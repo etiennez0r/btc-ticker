@@ -2,9 +2,7 @@ import PriceBoard from '@/Components/PriceBoard'
 import HomeLayout from '@/Layouts/HomeLayout'
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
-
-const SYMBOL = 'BTC/USDT'
-const API_ENDPOINT = `/api/v1/ticker?symbol=${SYMBOL}`
+import {API_ENDPOINT, SYMBOL} from '@/utils'
 
 let oldTicker = {price: 0}
 
@@ -16,7 +14,7 @@ const Ticker = () => {
 
     // query function
     const fetchTicker = () => {
-        axios.get(API_ENDPOINT)
+        axios.get(`${API_ENDPOINT}/ticker?symbol=${SYMBOL}`)
             .then((result) => {
                 setTicker(result.data.ticker)
             })
@@ -42,7 +40,7 @@ const Ticker = () => {
             
         if (gains < 0)
             setClassName('negative')
-            
+
         document.title = `${SYMBOL}: ${ticker.price}`;
 
         oldTicker = ticker
