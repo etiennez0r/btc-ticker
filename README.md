@@ -48,6 +48,17 @@ Now in the terminal execute the following commands to generate the assets and mi
 - npm i
 - npm run build
 
+## Test application
+
+Edit the file phpunit.xml in the root folder of your project and change the following variables to this values:
+
+- &lt;env name="DB_CONNECTION" value="sqlite"/&gt;
+- &lt;env name="DB_DATABASE" value=":memory:"/&gt;
+
+Now test the application with the following command in the terminal:
+
+- vendor/bin/phpunit
+
 ## Usage
 
 To start fetching the ticker BTC/USDT and save every fetch to the database execute the command in the terminal:
