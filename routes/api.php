@@ -17,9 +17,5 @@ use App\Http\Controllers\Api\TickerController;
 
 $apiVersion = 'v1';
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
-
 Route::get("/$apiVersion/ticker", [TickerController::class, 'ticker']);
 Route::get("/$apiVersion/historical", [TickerController::class, 'historical']);

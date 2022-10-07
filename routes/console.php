@@ -19,7 +19,8 @@ Artisan::command('inspire', function () {
 })->purpose('Display an inspiring quote');
 
 Artisan::command('daemon:ticker {symbol=BTC/USDT : The desired symbol to fetch prices, BTC/USDT if nothing is specified.}', function ($symbol) {
-    $this->info("fetching ticker price for {$symbol}@binance!");
+    $this->info("Fetching ticker price for {$symbol}@binance!
+Press ctrl+c to exit any time.");
 
     $daemon = new \App\Daemons\DaemonTicker($symbol);
     $daemon->loop();
