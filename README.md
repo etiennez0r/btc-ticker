@@ -1,5 +1,11 @@
 ## BTC Live Ticker
 
+This app fetch the price of the ticker BTC/USDT from Binance, every 10 seconds and saves it to the database.
+
+Tha backend is in Laravel, and the frontend in Inertia framework and React.
+
+[LIVE DEMO](https://btc-ticker.daemontrader.com/)
+
 ## Installation
 
 Open a terminal and execute the following commands:
